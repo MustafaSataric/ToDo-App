@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <!-- STRG+ALT+H -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo App</title>
+    <link rel="stylesheet" href="style/style.css"></link>
+    <script type="text/javascript" src="script/script.js"></script>
+</head>
+<body onload="Init()">
+
+        <nav class="container">
+            <h1>ToDo App</h1>
+            <div id="side">
+                <div class="menue">
+                    <button class="selection">Settings</button>
+                    <button class="selection">Choose</button>
+                    <button class="selection">Change mode</button>
+                    <button class="selection">Show finished</button>
+                    <button class="selection">Show all</button>
+                </div>
+                <div class="nav-con"></div>
+                </div>
+            </div>
+            <button class="hamburger" onclick="change()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+
+    <div id="con-sub">
+        <button class="back"><</button>
+        <br>
+        <textarea class="ueberschrift" placeholder="Überschrift ..."></textarea>
+        <br>
+        <textarea class="eingabe" placeholder="Notiz ..."></textarea>
+    </div>
+</body>
+</html>
