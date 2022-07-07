@@ -2,6 +2,12 @@ body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     overflow-x: hidden;
 }
+#con-sub{
+    width: 99vw;
+    height: 99vh;
+    display: none;
+    overflow-x: hidden;
+}
 .back:hover{
     transition: 0.5s;
     transform: scale(1.2);
@@ -12,6 +18,7 @@ body{
     background-color: rgba(0, 0, 0, 0);
     border: none;
     font-size: 4vh;
+    padding-left: 3vw;
 }
 textarea{
     font-size: 4vh;
@@ -25,164 +32,63 @@ textarea{
 .eingabe{
     min-height: 78vh;
 }
-
-
-
-:root{
-    --primary: #8c38ff;
-    --light: white;
-    --dark: #2f2f2f;
-}
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-}
-
-#side{
-    display: none;
-}
-
-.container{
-    min-width: 100vw;
-    height: 10vh;
-    margin: 0 auto;
-    background-color: var(--dark);
-    color: var(--light);
-    position: fixed;
-    top: 0vh;
-    padding: 8vh 16vh;
-
-    display: flex;
+.txts{
+    display: grid;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
-.nav-con{
-    position: absolute;
-    top: 60vh;
-    right: 0;
+.add{
+    position:fixed;
     float: right;
-    display: grid; 
-    grid: auto ; 
-
-    height: 45vh;
-    width: 80vw;
-    background-color: var(--dark);
-    padding: 1vh; 
+    bottom: 5vh;
+    right: 3vh;
+    background-color: rgba(255, 166, 0, 0.717);
+    padding: 3vh;
+    border-radius: 50%;
+    z-index: 1;
 }
-
-.menue{
-        position: absolute;
-        top: 15vh;
-        right: 0;
-        float: right;
-        display: grid; 
-        grid: auto ; 
-
-        height: 45vh;
-        width: 80vw;
-        background-color: var(--dark);
-        padding: 1vh; 
-} 
-      
-.selection { 
-        background-color: var(--primary);
-        height: 8vh;
-        padding: 1vh 1vh; 
-        font-size: 6vh; 
-} 
-
-.hamburger{
-    display: block;
+.add:hover{
+    transition: 0.5s;
+    transform: scale(1.1);
+}
+.choose{
+    display: grid;
     position: relative;
-
-    user-select: none;
-
-    appearance: none;
-    border: none;
-    outline: none;
-    background: none;
-    cursor: pointer;
+    height: 3vh;
+    margin: 1vh;
 }
-
-.hamburger span{
-    display:block;
-    width: 33px;
-    height: 4px;
-    margin-bottom: 5px;
+.choose span{
     position: relative;
-
-    background-color: var(--light);
-    border-radius: 6px;
-
-    transform-origin: 0 0;
-
-    transition: 0.4s;
+    margin: -1vh;
 }
-
-.hamburger:hover span:nth-child(2){
-    transform: translateX(10px);
-    background-color: var(--primary);
+.options{
+    position: absolute;
+    top: 1vh;
+    right: 1vw;
+    float: right;
 }
-
-.hamburger.is-active span:nth-child(1){
-    transform: translate(0px, -2px) rotate(45deg);
+.home{
+    display: grid;
+    align-items: center;
+    justify-content: center;
 }
-
-
-.hamburger.is-active span:nth-child(3){
-    transform: translate(-3px, 12px) rotate(-45deg);
+.task{
+    position: relative;
+    width: 92vw;
+    min-height: 30vh;
+    background-color: rgba(128, 128, 128, 0.708);
+    padding: 2vh 2vw;
+    margin-top: 2vh;
+    border-radius: 2vh;
 }
-
-
-.hamburger.is-active span:nth-child(2){
+.available-option{
+    background-color: rgb(128, 128, 128);
     display: none;
 }
-
-.hamburger.is-active:hover span{
-    background-color: var(--primary);
+.close{
+    display: none;
+    position: relative;
+    right: -4.5vh;
+    margin: 1vh;
 }
-
-h1{
-    color: var(--light);
-    font-size: 28px;
-    font-weight: 900;
-    letter-spacing: 1px;
-}
-
-
-nav a.is-active, nav a:hover{
-    background-color: var(--primary);
-}
-
-
-    .menu{
-        display: block;
-    }
-
-    .help{
-        display: block;
-    }
-    
-    .help a{
-        transition: 0.4s;
-        text-decoration: none;
-        color: var(--light);
-        margin-left: 2vw;
-        padding: 8px 16px;
-        border-radius: 90px;
-    }
-
-    @keyframes showMenu{
-        from{width:0vw}
-        to{width:80vw}
-    }
-    
-    @keyframes hideMenu{
-        from{width:80vw}
-        to{width:0vw}
-    }
-   
