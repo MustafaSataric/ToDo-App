@@ -110,10 +110,12 @@ textarea::-webkit-input-placeholder {
 }
 
 .title{
+    overflow-wrap: break-word;
     margin: 1vh;
     padding: 1vh;
 }
 .tasktodo{
+    overflow-wrap: break-word;
     margin: 1vh;
     padding: 1vh;
 }
