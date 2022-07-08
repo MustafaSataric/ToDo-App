@@ -1,41 +1,56 @@
+:root {
+    --main-color: rgba(128, 128, 128, 0.858);
+    --main-font-color: #f3f3f3;
+    --secondary-color: rgba(183, 173, 173, 0.749);
+  }
+
 body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     overflow-x: hidden;
+    background-color: var(--main-color);
+    color: var(--main-font-color);
 }
 #con-sub{
-    width: 99vw;
+    width: 100vw;
     height: 99vh;
     display: none;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 .back:hover{
     transition: 0.5s;
     transform: scale(1.2);
-    color: rgba(128, 128, 128, 0.858);
 }
 .back{
-    color: rgba(128, 128, 128, 0.758);
-    background-color: rgba(0, 0, 0, 0);
+    color: var(--main-font-color);
+    background-color: rgba(255, 0, 0, 0);
     border: none;
     font-size: 4vh;
     padding-left: 3vw;
 }
 textarea{
     font-size: 4vh;
-    width: 93vw;
+    width: 90vw;
     border:none;
     resize: none;
+    background-color: rgba(255, 0, 0, 0);
+    color: var(--main-font-color);
 }
+
+textarea::-webkit-input-placeholder {
+    color: var(--main-font-color);
+}
+
 .ueberschrift{
-    min-height: 10vh;
+    height: 10vh;
 }
 .eingabe{
-    min-height: 78vh;
+    height: 75vh;
 }
 .txts{
     display: grid;
     align-items: center;
     justify-content: center;
+    margin: 2vw 2vh;
 }
 
 .add{
@@ -76,14 +91,15 @@ textarea{
 .task{
     position: relative;
     width: 92vw;
-    min-height: 30vh;
-    background-color: rgba(128, 128, 128, 0.708);
+    min-height: 15vh;
+    background-color: var(--secondary-color);
     padding: 2vh 2vw;
     margin-top: 2vh;
     border-radius: 2vh;
+    overflow: hidden;
 }
 .available-option{
-    background-color: rgb(128, 128, 128);
+    background-color: var(--secondary-color);
     display: none;
 }
 .close{
@@ -91,4 +107,23 @@ textarea{
     position: relative;
     right: -4.5vh;
     margin: 1vh;
+}
+
+.title{
+    margin: 1vh;
+    padding: 1vh;
+}
+.tasktodo{
+    margin: 1vh;
+    padding: 1vh;
+}
+.date{
+    margin: 1vh;
+    padding: 1vh;
+}
+#noproblems{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 96vh;
 }

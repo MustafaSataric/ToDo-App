@@ -8,6 +8,7 @@
     <title>ToDo App</title>
     <script type="text/javascript" src="script/script.js"></script>
     <link rel="stylesheet" href="style/style.css"></link>
+    <link data-n-head="ssr" rel="icon" href="https://icons.iconarchive.com/icons/alienvalley/osx-dock-replacement/512/notes-icon.png" type="image/x-icon">
 </head>
 <body onload="renderAllTasks()">
 
@@ -17,14 +18,16 @@
         </div>
         <div class="add" onclick="openEditor()">+</div>
     </div>
-
+    <div id="noproblems">
+        <span>You have no available taks</span>
+    </div>
     <div id="con-sub">
         <button class="back" onclick="addTask()"><</button>
         <br>
         <div class="txts">
-            <textarea id="ueber" class="ueberschrift" placeholder="Überschrift ..."></textarea>
+            <textarea id="ueber" class="ueberschrift" placeholder="Title ..."></textarea>
             <br>
-            <textarea id="eing" class="eingabe" placeholder="Notiz ..."></textarea>
+            <textarea id="eing" class="eingabe" placeholder="Note ..."></textarea>
         </div>
     </div>
 </body>

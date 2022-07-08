@@ -10,15 +10,21 @@ function showAvailableOptions(childchoose){
     document.getElementsByClassName('close')[childchoose].style.display = "grid";
 
 }
+
 function closeAvailableOptions(childchoose){
     var nodes = document.getElementsByClassName('available-option')[childchoose];
     nodes.style.display = "none";
     document.getElementsByClassName('choose')[childchoose].style.display = "grid";
     document.getElementsByClassName('close')[childchoose].style.display = "none";
 }
+
 function openEditor(){
+    document.getElementById('noproblems').style.display = "none";
+
     document.getElementById('home').style.display = "none";
     document.getElementById('con-sub').style.display = "block";
+    document.getElementsByTagName('body')[0].style.overflow = "hidden"; 
+
 }
 
 function openTask(nr){
@@ -32,10 +38,7 @@ function openTask(nr){
     times.splice(nr, 1);
     closeds.splice(nr, 1);
 
-    localStorage.setItem("titles", JSON.stringify(titles));
-    localStorage.setItem("texts", JSON.stringify(texts));
-    localStorage.setItem("times", JSON.stringify(times));
-    localStorage.setItem("closeds", JSON.stringify(closeds));    
+    setItems();  
 }
 
 function closeTask(nr){
@@ -46,15 +49,9 @@ function closeTask(nr){
         closeds.splice(nr, 1, "false");
     }
 
-    localStorage.removeItem("titles");
-    localStorage.removeItem("texts");
-    localStorage.removeItem("times");
-    localStorage.removeItem("closeds");
+    removeItems();
     
-    localStorage.setItem("titles", JSON.stringify(titles));
-    localStorage.setItem("texts", JSON.stringify(texts));
-    localStorage.setItem("times", JSON.stringify(times));
-    localStorage.setItem("closeds", JSON.stringify(closeds));    
+    setItems();
 
     location.reload();
     renderAllTasks();
@@ -67,65 +64,63 @@ function deleteTask(nr){
     times.splice(nr, 1);
     closeds.splice(nr, 1);
 
-    localStorage.setItem("titles", JSON.stringify(titles));
-    localStorage.setItem("texts", JSON.stringify(texts));
-    localStorage.setItem("times", JSON.stringify(times));
-    localStorage.setItem("closeds", JSON.stringify(closeds));    
+    setItems();  
 
     location.reload();
     renderAllTasks();
 }
 
 function addTask(){
+    document.getElementById('noproblems').style.display = "none";
     var title = document.getElementById('ueber').value;
     var text = document.getElementById('eing').value;
+    document.getElementsByTagName("body")[0].style.overflow = ""; 
     let current = new Date();
     // By default US English uses 12hr time with AM/PM
     let time = current.toLocaleTimeString("en-US");
-    titles.push(title);
-    texts.push(text);
-    times.push(time);
-    closeds.push("false");
-    if(localStorage.getItem('titles')){
-        localStorage.removeItem("titles");
-        localStorage.removeItem("texts");
-        localStorage.removeItem("times");
-        localStorage.removeItem("closeds");
-        
-        localStorage.setItem("titles", JSON.stringify(titles));
-        localStorage.setItem("texts", JSON.stringify(texts));
-        localStorage.setItem("times", JSON.stringify(times));
-        localStorage.setItem("closeds", JSON.stringify(closeds));    
+    if(title.length > 0 ){
+        if(text.length > 0 ){
+        titles.push(title);
+        texts.push(text);
+        times.push(time);
+        closeds.push("false");
+        if(localStorage.getItem('titles')){
+            removeItems();
+            
+            setItems();
+        }
+        else{
+            setItems(); 
+        }
+        getItems();
+        document.getElementById('home').style.display = "block";
+        document.getElementById('con-sub').style.display = "none";
+        location.reload();
+        renderAllTasks();
+        }
+        else{
+            document.getElementById('eing').placeholder = "Please enter an Note";
+            document.getElementsByTagName('body')[0].style.overflow = "hidden"; 
+        }
     }
     else{
-        localStorage.setItem("titles", JSON.stringify(titles));
-        localStorage.setItem("texts", JSON.stringify(texts));
-        localStorage.setItem("times", JSON.stringify(times));
-        localStorage.setItem("closeds", JSON.stringify(closeds));    
+        document.getElementById('ueber').placeholder = "Please enter an title";
+        document.getElementsByTagName('body')[0].style.overflow = "hidden"; 
     }
-    titles = JSON.parse(localStorage.getItem("titles"));
-    texts = JSON.parse(localStorage.getItem("texts"));
-    times = JSON.parse(localStorage.getItem("times"));
-    closeds = JSON.parse(localStorage.getItem("closeds"));
-    document.getElementById('home').style.display = "block";
-    document.getElementById('con-sub').style.display = "none";
-    location.reload();
-    renderAllTasks();
 }
 
 function renderAllTasks(){
+        let matched = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if(!matched){
+            document.documentElement.style.setProperty('--main-color', 'white');
+            document.documentElement.style.setProperty('--main-font-color', 'rgba(128, 128, 128, 0.858)');
+        }
         if(localStorage.getItem('titles')){           
-            titles = JSON.parse(localStorage.getItem("titles"));
-            texts = JSON.parse(localStorage.getItem("texts"));
-            times = JSON.parse(localStorage.getItem("times"));
-            closeds = JSON.parse(localStorage.getItem("closeds"));
-
-            /*
-            console.log(titles);
-            console.log(closeds);
-            */
-
+            getItems();
+            
         for(var i = 0; i < titles.length; i++){
+            document.getElementById('noproblems').style.display = "none";
                 if(titles[i] != null){
                 document.getElementById("tasks").innerHTML = 
                 document.getElementById("tasks").innerHTML
@@ -150,10 +145,31 @@ function renderAllTasks(){
                 +'             </div>'
                 +'         </div>';
                 if(closeds[i] == "true"){
-                    document.getElementsByClassName('task')[i].style.backgroundColor = "rgba(212, 73, 73, 0.758)";
+                    document.getElementsByClassName('task')[i].style.textDecoration = "line-through";
                     document.getElementsByClassName('closeTask')[i].innerText = "Open";
                 }
             }
         }
     }
+}
+
+function setItems(){
+    localStorage.setItem("titles", JSON.stringify(titles));
+    localStorage.setItem("texts", JSON.stringify(texts));
+    localStorage.setItem("times", JSON.stringify(times));
+    localStorage.setItem("closeds", JSON.stringify(closeds));  
+}
+
+function getItems(){
+    titles = JSON.parse(localStorage.getItem("titles"));
+    texts = JSON.parse(localStorage.getItem("texts"));
+    times = JSON.parse(localStorage.getItem("times"));
+    closeds = JSON.parse(localStorage.getItem("closeds"));
+}
+
+function removeItems(){
+    localStorage.removeItem("titles");
+    localStorage.removeItem("texts");
+    localStorage.removeItem("times");
+    localStorage.removeItem("closeds");
 }
